@@ -127,20 +127,25 @@ function getEmployeeStatistics(employees) {
     };
 }
 
-function main(dtoIn) {
+function generateEmployeeData(dtoIn) {
     const employees = [];
     for (let i = 0; i < dtoIn.count; i++) {
         employees.push(randomEmployee(dtoIn.age.min, dtoIn.age.max));
     }
+    return employees;
+}
 
-    const statistics = getEmployeeStatistics(employees);
+function main(dtoIn) {
+    const employeeData = generateEmployeeData(dtoIn);
+
+    const statistics = getEmployeeStatistics(employeeData);
     const dtoOut = { ...statistics };
 
     return dtoOut;
 }
 
 const dtoIn = {
-    count: 2,
+    count: 5,
     age: {
         min: 19,
         max: 35
